@@ -1,4 +1,4 @@
-from keras.models import Sequential, Model
+from keras.models import Sequential, Model, load_model
 from keras.layers import Conv2D, Activation, Input
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 import os
@@ -33,6 +33,7 @@ model = cnn_model()
 checkpointer = ModelCheckpoint('checkpoint-{epoch:02d}.h5')
 #stopper = EarlyStopping(monitor='val_loss', patience=1, verbose=1)
 model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy', 'mae'])
-model.fit(X, Y, batch_size=50, epochs=30, callbacks=[checkpointer], validation_split=0.1)
+#model = load_model('checkpoint-30.h5')
+model.fit(X, Y, batch_size=50, epochs=50, callbacks=[checkpointer], validation_split=0.33)
 
 print('Done!')

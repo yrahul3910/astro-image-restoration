@@ -10,7 +10,7 @@ for file in files:
     with open(file, 'rb') as f:
         data = pickle.load(f)
 
-    X, Y = data['X'], data['Y']
+    Y, X = data['X'], data['Y']
     X_all.append(X)
     Y_all.append(Y)
 
@@ -38,12 +38,9 @@ def get_data_multi(I,Ip,sz,szp,n):
     return xapp,xtest 
 
 print('Generating crops')
-# Unfortunately, the code generating the pickle files generated X and Y
-# in the wrong order (Y is actually X, and vice versa)
-Y_crops, X_crops = get_data_multi(Y_all, X_all, 32, 14, 100000)
+X_crops, Y_crops = get_data_multi(X_all, Y_all, 32, 14, 150*1000)
 print('Finished generating crops')
 with open('crop_data.pkl', 'wb') as f:
-    # This weird saving is to reverse the old mistake
-    pickle.dump({'Y_crops': X_crops, 'X_crops': Y_crops}, f)
+    pickle.dump({'X_crops': X_crops, 'Y_crops': Y_crops}, f)
 
 print('Finished dumping data')
