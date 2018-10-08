@@ -17,3 +17,10 @@ This readme provides an explanation of each file. All code files are properly na
 * `GoodFrames`: Some non-corrupted FITS images. Useful for reference and for understanding the format.
 * `BadFrames`: Some corrupted FITS images. Useful for reference and to understand what kind of corruptions may occur.
 * `ASI conference`: Abstract for the conference in Kolkatta.
+
+## Some Observations
+It appears that the 3-layer neural network for some reason is pretty bad at what it aims to do. Even with the paper author's implementation, as used in `OtherCNN/PaperPretrained/` and the `Paper Pretrained Model (M31)` notebook, it does a bad job at maintaining the original image.
+
+The 6-layer IRCNN, on the other hand, does considerably better. Even though it was trained on Rayleigh noise that was found by subtracting PNG images, it worked    remarkably well on both test (astronomical) PNG data as well as FITS data. However, it appears that there are two "kinds" of these FITS files, as viewed in `ds9`. One type is viewed by setting the scale to "histogram", and the other is viewed by setting the scale to "z-scale" (the last option). Clearly, from the `IRCNN_impl/Testing trained CNN model.ipynb` notebook, the network does well on the first type--the difference between the images is remarkably low, and the differences between the maximum and minimum intensity values before and after running through the CNN is reasonably small. However, with the other type, as seen in the same notebook (the last section), it does not perform well. This is seen with the help of the "BadM13..." FITS file, about 17 MB, which is this kind. While the min values seem large, it should be noted that the left side of the image seems to be vastly different, which may be the cause. The center of the image also looks rather distorted. Perhaps this is because of the low number of epochs the model was trained on (16).
+
+Overall, the IRCNN model seems promising indeed, and with the right kind of care in training, it could be incredibly effective for the task.
