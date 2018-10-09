@@ -1,0 +1,11 @@
+1. Do the FITS files now have the true images convolved with the PSF of the telescopes?
+2. If so, do we have the PSF of the telescope?
+3. So are these images obtained by convolution of the true image with the PSF, and then additive noise?
+
+Read Sharjeel's report about this...
+
+Need more images, maybe try finding their distributions. If the above is the case, ask about deconvolution algorithms, do it and then find distributions. 
+
+Ask about computing resources at IIA.
+
+scipy.signal.deconvolve(signal, PSF)
