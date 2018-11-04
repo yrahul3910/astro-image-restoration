@@ -17,6 +17,9 @@ This readme provides an explanation of each file. All code files are properly na
 * `GoodFrames`: Some non-corrupted FITS images. Useful for reference and for understanding the format.
 * `BadFrames`: Some corrupted FITS images. Useful for reference and to understand what kind of corruptions may occur.
 * `ASI conference`: Abstract for the conference in Kolkatta.
+* `AlignedFrames`: This is a set of frames that have been aligned to the center of the M13 cluster, and are all 951x951. They have been segregated into good and bad frames by looking at the Full-Width Half-Maximum (FWHM) values. Lower value of FWHM is better, because it means a lower spread of the energy, making it easier to resolve different stars.
+* `crop_data_x.pickle` and `crop_data_y.pickle` are files created by `Generating crops of FITS files for training CNN.ipynb` in `IRCNN_impl`. These will be used for transfer learning.
+* `AlignedFrames.tar.gz` is in Google Drive.
 
 ## Some Observations
 It appears that the 3-layer neural network for some reason is pretty bad at what it aims to do. Even with the paper author's implementation, as used in `OtherCNN/PaperPretrained/` and the `Paper Pretrained Model (M31)` notebook, it does a bad job at maintaining the original image.
